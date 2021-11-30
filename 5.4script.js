@@ -40,7 +40,6 @@ var loadTasks = function() {
       createTask(task.text, task.date, list);
     });
   });
-  
 };
 
 var saveTasks = function() {
@@ -72,7 +71,6 @@ var auditTask = function(taskEl) {
   else if (Math.abs(moment().diff(time, "days")) <= 2) {
     $(taskEl).addClass("list-group-item-warning");
   }
-  console.log(taskEl)
 };
 
 // enable draggable/sortable feature on list-group elements
@@ -82,24 +80,19 @@ $(".card .list-group").sortable({
   scroll: false,
   tolerance: "pointer",
   helper: "clone",
-  activate: function(event, ui) {$(this).addClass("dropover");
-  $(".bottom-trash").addClass("bottom-trash-drag")
+  activate: function(event, ui) {
     console.log(ui);
   },
-  deactivate: function(event, ui) {$(this).addClass("dropover");
-  $(".bottom-trash");
+  deactivate: function(event, ui) {
     console.log(ui);
   },
-  over: function(event) {$(this).addClass("dropover");
-  $(".bottom-trash").addClass("bottom-trash-drag")
+  over: function(event) {
     console.log(event);
   },
-  out: function(event) {$(this).addClass("dropover");
-  $(".bottom-trash");
+  out: function(event) {
     console.log(event);
   },
-  update: function() {$(this).addClass("dropover");
-  $(".bottom-trash");
+  update: function() {
     var tempArr = [];
 
     // loop over current set of children in sortable list
@@ -168,7 +161,7 @@ $("#task-form-modal").on("shown.bs.modal", function() {
 });
 
 // save button in modal was clicked
-$("#task-form-modal .btn-save").click(function() {
+$("#task-form-modal .btn-primary").click(function() {
   // get form values
   var taskText = $("#modalTaskDescription").val();
   var taskDate = $("#modalDueDate").val();
@@ -295,9 +288,3 @@ $("#remove-tasks").on("click", function() {
 
 // load tasks for the first time
 loadTasks();
-
-setTimeout(function() {
-  $(".card .list-group-item").each(function(index, el){
-    auditTask(el);
-  });
-}, 1800000);
